@@ -14,7 +14,7 @@ body {
 }
 
 .App {
-  text-left: center;
+  /* text-left: center; */
   padding-left: 10%;
 }
 
@@ -43,8 +43,8 @@ body {
     max-width: 30px;
     height: auto;
 }
-.ListDiv {
-}
+/* .ListDiv {
+} */
 .ListLink {
     display: inline-block;
     vertical-align: middle;
