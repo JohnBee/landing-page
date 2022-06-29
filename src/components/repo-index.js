@@ -42,6 +42,11 @@ export const mlList = [
         repo: "https://github.com/JohnBee/SnakeAi",
     },
     {
+        name: "GA Evolved Neural Network",
+        link: "https://github.com/JohnBee/GA_Evolved_NN",
+        repo: "https://github.com/JohnBee/GA_Evolved_NN",
+    },
+    {
         name: "Neural Network Dry Bean Classifier",
         link: "https://github.com/JohnBee/NN_Dry_Bean_Classifier",
         repo: "https://github.com/JohnBee/NN_Dry_Bean_Classifier",
