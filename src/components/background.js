@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Dot from "./textures/dot.png";
+
 
 export class Scene extends React.Component {
   constructor(props) {
@@ -9,6 +11,7 @@ export class Scene extends React.Component {
     this.start = this.start.bind(this)
     this.stop = this.stop.bind(this)
     this.animate = this.animate.bind(this)
+    this.pi = 0;
   }
   componentDidMount() {
     const width = this.mount.clientWidth
@@ -22,39 +25,70 @@ export class Scene extends React.Component {
       1000
     )
     const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true })
-    const geometry = new THREE.BoxGeometry(1, 1, 1)
-    const material = new THREE.MeshBasicMaterial({ color: 0xff00ff })
-    
-    const cube = new THREE.Mesh(geometry, material)
+
+    scene.fog = new THREE.Fog( 0x264653, 0.001 );
 
     camera.position.z = 4
-    scene.add(cube)
     renderer.setClearColor( 0x000000, 0 ); // the default
     // renderer.setSize(width, height)
 
+
+    const vertices = [];
+    const colors = []
+    const geometry = new THREE.BufferGeometry();
+    const sprite = new THREE.TextureLoader().load(Dot);
+    const density = 500;
+    const density_half = density / 2;
+    for ( let i = 0; i < 10000; i ++ ) {
+
+      const x = density * Math.random() - density_half;
+      const y = density * Math.random() - density_half;
+      const z = density * Math.random() - density_half;
+
+      vertices.push( x, y, z );
+      colors.push(0,0,0);
+
+    }
+    
+    
+    geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
+    geometry.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ))
+
+    const material = new THREE.PointsMaterial( { 
+      size: 3,
+      sizeAttenuation: true,
+      map: sprite, 
+      alphaTest: 0.5,
+      transparent: true,
+      vertexColors: true,
+      } );
+    // material.color.setHSL( 0.0, 0.0, 0.0 );
+
+    const particles = new THREE.Points( geometry, material );
+
+    scene.add( particles );
+    
+
+    camera.position.z = 100;
+    this.particles = particles;
     this.scene = scene
     this.camera = camera
     this.renderer = renderer
     this.material = material
-    this.cube = cube
+    
 
     this.mount.appendChild(this.renderer.domElement)
     this.start()
   }
   resizeCanvasToDisplaySize() {
     const canvas = this.renderer.domElement;
-    // look up the size the canvas is being displayed
     const width = canvas.clientWidth;
     const height = canvas.clientHeight;
   
-    // adjust displayBuffer size to match
     if (canvas.width !== width || canvas.height !== height) {
-      // you must pass false here or three.js sadly fights the browser
       this.renderer.setSize(width, height, false);
       this.camera.aspect = width / height;
       this.camera.updateProjectionMatrix();
-  
-      // update any render target sizes here
     }
   }
 
@@ -74,12 +108,22 @@ export class Scene extends React.Component {
   }
 
   animate() {
-    this.cube.rotation.x += 0.01
-    this.cube.rotation.y += 0.01
+
     
     this.resizeCanvasToDisplaySize();
-
-
+    var time = Date.now() * 0.0001;
+    // console.log(time);
+    this.particles.rotation.y = time;
+    this.particles.rotatex = time;
+    this.pi += 0.2;
+    for ( let i = 0; i < this.particles.geometry.attributes.position.count; i ++ ) {
+      let p = Math.sin((this.pi+(this.particles.geometry.attributes.position.array[i*3]/1000)*360)*0.017453);
+      this.particles.geometry.attributes.color.array[i*3]=p;
+      this.particles.geometry.attributes.color.array[i*3+1]=p;
+      this.particles.geometry.attributes.color.array[i*3+2]=p;
+    }
+    this.particles.geometry.attributes.color.needsUpdate = true;
+    
     this.renderScene()
     this.frameId = window.requestAnimationFrame(this.animate)
   }
