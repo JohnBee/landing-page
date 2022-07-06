@@ -60,6 +60,9 @@ body {
 .Header2{
     font-size: 2em;
 }
+.Hbackground{
+    background-color: var(--charcoal);
+}
 canvas {
     width: 100vw;
     height: 100vh;
