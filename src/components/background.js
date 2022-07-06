@@ -1,6 +1,6 @@
-import * as THREE from 'three';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as THREE from 'three';
 import Dot from "./textures/dot.png";
 
 
