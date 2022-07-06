@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "5d881301599c98e1fe5e",
-    "url": "/landing-page/static/css/main.6bd9e069.chunk.css"
+    "revision": "d9a5956a105a01b6d22d",
+    "url": "/landing-page/static/css/main.db240b1c.chunk.css"
   },
   {
-    "revision": "5d881301599c98e1fe5e",
-    "url": "/landing-page/static/js/main.5d881301.chunk.js"
+    "revision": "d9a5956a105a01b6d22d",
+    "url": "/landing-page/static/js/main.d9a5956a.chunk.js"
   },
   {
     "revision": "c7942216d879405da885",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/landing-page/static/media/GitHub_Logo_White.064ace47.png"
   },
   {
-    "revision": "dedfef944307aa8a454ea75e683fe5ae",
+    "revision": "dc4bbc556a653f0bebc50a7248ac23d6",
     "url": "/landing-page/index.html"
   }
 ];
