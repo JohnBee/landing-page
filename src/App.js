@@ -1,13 +1,13 @@
 import './App.css';
 import { Repolist } from "./components/repo-list";
-// import { Scene } from "./components/background.js";
+import { Scene } from "./components/background.js";
 import GHlogo from "./images/GitHub_Logo_White.png";
 import {reactList, webglList, aocList, mlList} from "./components/repo-index.js";
 function App() {
 
     return (
     <div className="App">
-        {/* <Scene /> */}
+        
         <h1 className="Header1">
         John Barraclough
         </h1>
@@ -35,6 +35,7 @@ function App() {
             Advent of Code
         </h2>
         <Repolist items={aocList} />
+        <Scene />
     </div>
     );
 }

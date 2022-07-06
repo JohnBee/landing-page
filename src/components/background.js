@@ -10,7 +10,6 @@ export class Scene extends React.Component {
     this.stop = this.stop.bind(this)
     this.animate = this.animate.bind(this)
   }
-
   componentDidMount() {
     const width = this.mount.clientWidth
     const height = this.mount.clientHeight
@@ -22,15 +21,16 @@ export class Scene extends React.Component {
       0.1,
       1000
     )
-    const renderer = new THREE.WebGLRenderer({ antialias: true })
+    const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true })
     const geometry = new THREE.BoxGeometry(1, 1, 1)
     const material = new THREE.MeshBasicMaterial({ color: 0xff00ff })
+    
     const cube = new THREE.Mesh(geometry, material)
 
     camera.position.z = 4
     scene.add(cube)
-    renderer.setClearColor('#000000')
-    renderer.setSize(width, height)
+    renderer.setClearColor( 0x000000, 0 ); // the default
+    // renderer.setSize(width, height)
 
     this.scene = scene
     this.camera = camera
@@ -40,6 +40,22 @@ export class Scene extends React.Component {
 
     this.mount.appendChild(this.renderer.domElement)
     this.start()
+  }
+  resizeCanvasToDisplaySize() {
+    const canvas = this.renderer.domElement;
+    // look up the size the canvas is being displayed
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+  
+    // adjust displayBuffer size to match
+    if (canvas.width !== width || canvas.height !== height) {
+      // you must pass false here or three.js sadly fights the browser
+      this.renderer.setSize(width, height, false);
+      this.camera.aspect = width / height;
+      this.camera.updateProjectionMatrix();
+  
+      // update any render target sizes here
+    }
   }
 
   componentWillUnmount() {
@@ -60,6 +76,9 @@ export class Scene extends React.Component {
   animate() {
     this.cube.rotation.x += 0.01
     this.cube.rotation.y += 0.01
+    
+    this.resizeCanvasToDisplaySize();
+
 
     this.renderScene()
     this.frameId = window.requestAnimationFrame(this.animate)
@@ -68,11 +87,12 @@ export class Scene extends React.Component {
   renderScene() {
     this.renderer.render(this.scene, this.camera)
   }
+  
 
   render() {
     return (
       <div
-        style={{ width: '400px', height: '400px' }}
+        style={{ width: '100vw', height: '100vh', display: 'block', position: 'fixed', zIndex: '-9999'}}
         ref={(mount) => { this.mount = mount }}
       />
     )
