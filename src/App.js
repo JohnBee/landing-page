@@ -8,44 +8,46 @@ function App() {
 
     return (
     <div className="App">
+        <div className='Content'>
             <h1 className="Header1">
                 <span className='Hbackground'>
                     John Barraclough
                 </span>
             </h1>
-        <div className="GitHubLogoDiv">
-            <a className="GHLogoLink" href="https://github.com/JohnBee">
-                <img className="GHlogo" src={GHlogo} alt="Link to GitHub"></img>
-            </a>
+            <div className="GitHubLogoDiv">
+                <a className="GHLogoLink" href="https://github.com/JohnBee">
+                    <img className="GHlogo" src={GHlogo} alt="Link to GitHub"></img>
+                </a>
+            </div>
+            <h2 className="Header2">
+                <span className='Hbackground'>
+                    React JS
+                </span>
+            </h2>
+            <Repolist items={reactList}/>
+
+            <h2 className="Header2">
+                <span className='Hbackground'>
+                    WebGL ThreeJS
+                </span>
+            </h2>
+            <Repolist items={webglList} />
+            
+            <h2 className="Header2">
+                <span className='Hbackground'>
+                    Machine Learning
+                </span>
+            </h2>
+
+            <Repolist items={mlList} />
+            
+            <h2 className="Header2">
+                <span className='Hbackground'>
+                    Advent of Code
+                </span>
+            </h2>
+            <Repolist items={aocList} />
         </div>
-        <h2 className="Header2">
-            <span className='Hbackground'>
-                React JS
-            </span>
-        </h2>
-        <Repolist items={reactList}/>
-
-        <h2 className="Header2">
-            <span className='Hbackground'>
-                WebGL ThreeJS
-            </span>
-        </h2>
-        <Repolist items={webglList} />
-        
-        <h2 className="Header2">
-            <span className='Hbackground'>
-                Machine Learning
-            </span>
-        </h2>
-
-        <Repolist items={mlList} />
-        
-        <h2 className="Header2">
-            <span className='Hbackground'>
-                Advent of Code
-            </span>
-        </h2>
-        <Repolist items={aocList} />
         <Scene />
     </div>
     );
