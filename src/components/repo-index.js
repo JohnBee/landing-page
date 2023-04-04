@@ -16,8 +16,18 @@ export const webglList = [
         link: "https://johnbee.github.io/3d-sierpinski/",
         repo: "https://github.com/JohnBee/3d-sierpinski",
     },
+	{
+        name: "3D Room Explore",
+        link: "https://johnbee.github.io/3d-room-explore/",
+        repo: "https://github.com/JohnBee/3d-room-explore",
+    },
 ]
 export const aocList = [
+	{
+        name: "AoC 2022",
+        link: "https://github.com/JohnBee/AOC-2022",
+        repo: "https://github.com/JohnBee/AOC-2022",
+    },
     {
         name: "AoC 2021",
         link: "https://github.com/JohnBee/AoC-2021",
