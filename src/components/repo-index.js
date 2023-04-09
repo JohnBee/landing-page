@@ -1,3 +1,11 @@
+export const softwareList = [
+	{
+		name: "Chip-8 Interpreter/Emulator",
+		link: "https://github.com/JohnBee/chip8-Cpp",
+		repo: "https://github.com/JohnBee/chip8-Cpp"
+		
+	}
+]
 export const reactList = [
     {
         name: "Word Blitz",

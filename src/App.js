@@ -3,7 +3,7 @@ import './App.css';
 import { Repolist } from "./components/repo-list";
 import { Scene } from "./components/background.js";
 import GHlogo from "./images/GitHub_Logo_White.png";
-import {reactList, webglList, aocList, mlList} from "./components/repo-index.js";
+import {reactList, webglList, aocList, mlList, softwareList} from "./components/repo-index.js";
 function App() {
 
     return (
@@ -32,6 +32,12 @@ function App() {
                 </span>
             </h2>
             <Repolist items={webglList} />
+			<h2 className="Header2">
+                <span className='Hbackground'>
+                    Software
+                </span>
+            </h2>
+            <Repolist items={softwareList} />
             
             <h2 className="Header2">
                 <span className='Hbackground'>
